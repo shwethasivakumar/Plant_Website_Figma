@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Haven - Plant Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+    <script>
+        function addToCart(plantName, plantPrice) {
+            // Store the selected plant details in localStorage
+            localStorage.setItem('selectedPlant', JSON.stringify({ name: plantName, price: plantPrice }));
+            // Redirect to the billing page
+            window.location.href = 'billing.html';
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-green-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Green Haven</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="#" class="hover:underline">Home</a></li>
+                    <li><a href="#" class="hover:underline">Shop</a></li>
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="hover:text-gray-200"><i class="fas fa-search"></i></a>
+                <a href="#" class="hover:text-gray-200"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="hover:text-gray-200"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto mt-8 p-4">
+        <!-- Hero Section -->
+        <section class="bg-white p-8 rounded-lg shadow-md text-center mb-8">
+            <h2 class="text-3xl font-bold text-green-700 mb-4">Welcome to Green Haven</h2>
+            <p class="text-gray-600 mb-6">Discover a wide variety of plants to bring life and beauty to your home.</p>
+            <a href="#" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Shop Now</a>
+        </section>
+
+        <!-- Product Grid -->
+        <section>
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Featured Plants</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Product Card -->
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <img src="https://s.alicdn.com/@sc04/kf/Haba42e3656854b1fbbb7dc816244c055U.jpg_300x300.jpg" alt="Fiddle Leaf Fig" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h4 class="text-lg font-bold text-gray-800">Fiddle Leaf Fig</h4>
+                    <p class="text-gray-600 mb-2">Perfect for bright indoor spaces.</p>
+                    <p class="text-green-600 font-bold mb-4">$45.00</p>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full" onclick="addToCart('Fiddle Leaf Fig', 45)">Add to Cart</button>
+                </div>
+                <!-- Repeat Product Card -->
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <img src="https://dbg.org/wp-content/uploads/2018/08/adamphoto_55A9861.jpeg" alt="Cactus" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h4 class="text-lg font-bold text-gray-800">Cactus</h4>
+                    <p class="text-gray-600 mb-2">Low maintenance, great for offices.</p>
+                    <p class="text-green-600 font-bold mb-4">$15.00</p>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full" onclick="addToCart('Cactus', 15)">Add to Cart</button>
+                </div>
+                <!-- Repeat Product Card -->
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <img src="https://www.plantingtree.com/cdn/shop/products/Peace_Lily_6_FGT.jpg?v=1654112674" alt="Peace Lily" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h4 class="text-lg font-bold text-gray-800">Peace Lily</h4>
+                    <p class="text-gray-600 mb-2">Adds tranquility to any room.</p>
+                    <p class="text-green-600 font-bold mb-4">$30.00</p>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full" onclick="addToCart('Peace Lily', 30)">Add to Cart</button>
+                </div>
+                <!-- Repeat Product Card -->
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <img src="https://gardengoodsdirect.com/cdn/shop/files/string-of-pearls-plant-30347241390122_1200x1200.jpg?v=1695445621" alt="String of Pearls" class="w-full h-48 object-cover rounded-t-lg mb-4">
+                    <h4 class="text-lg font-bold text-gray-800">String of Pearls</h4>
+                    <p class="text-gray-600 mb-2">Great for hanging baskets.</p>
+                    <p class="text-green-600 font-bold mb-4">$25.00</p>
+                    <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full" onclick="addToCart('String of Pearls', 25)">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-600 text-white p-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2023 Green Haven. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

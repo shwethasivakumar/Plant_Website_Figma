@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing - Green Haven</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+    <script>
+        // Function to populate order summary from localStorage
+        window.onload = function() {
+            const selectedPlant = JSON.parse(localStorage.getItem('selectedPlant'));
+            if (selectedPlant) {
+                document.getElementById('plantName').textContent = selectedPlant.name;
+                document.getElementById('plantPrice').textContent = `$${selectedPlant.price.toFixed(2)}`;
+                const shippingCost = 5.00;
+                const total = selectedPlant.price + shippingCost;
+                document.getElementById('totalPrice').textContent = `$${total.toFixed(2)}`;
+            }
+        };
+
+        function validateForm(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form field values
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const state = document.getElementById('state').value.trim();
+            const zip = document.getElementById('zip').value.trim();
+
+            // Simple validation
+            if (!fullName || !email || !address || !city || !state || !zip) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // If all is good, simulate a successful form submission
+            alert('Billing information submitted successfully!');
+
+            // Update the profile with the new purchase
+            updateProfileWithPurchase();
+
+            // Optionally, reset the form
+            document.querySelector('form').reset();
+            localStorage.removeItem('selectedPlant'); // Clear selected plant
+
+            // Redirect to profile page (assuming profile.html is the profile page)
+            window.location.href = 'profile.html';
+        }
+
+        function updateProfileWithPurchase() {
+            const selectedPlant = JSON.parse(localStorage.getItem('selectedPlant'));
+            if (selectedPlant) {
+                const profilePurchases = JSON.parse(localStorage.getItem('purchases')) || [];
+                profilePurchases.push({ name: selectedPlant.name, price: selectedPlant.price });
+                localStorage.setItem('purchases', JSON.stringify(profilePurchases));
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Billing Section -->
+    <main class="container mx-auto mt-8 p-4">
+        <h1 class="text-3xl font-bold text-green-700 mb-6">Billing Information</h1>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+            <p class="text-lg font-semibold">Selected Plant: <span id="plantName" class="font-normal"></span></p>
+            <p class="text-lg font-semibold">Price: <span id="plantPrice" class="font-normal"></span></p>
+            <p class="text-lg font-semibold">Shipping Cost: <span class="font-normal">$5.00</span></p>
+            <p class="text-lg font-semibold">Total: <span id="totalPrice" class="font-normal"></span></p>
+        </div>
+
+        <form class="bg-white p-6 rounded-lg shadow-md mt-6" onsubmit="validateForm(event)">
+            <h2 class="text-xl font-bold mb-4">Your Details</h2>
+            <div class="mb-4">
+                <label for="fullName" class="block text-gray-700">Full Name</label>
+                <input type="text" id="fullName" class="border border-gray-300 rounded p-2 w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700">Email</label>
+                <input type="email" id="email" class="border border-gray-300 rounded p-2 w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="address" class="block text-gray-700">Address</label>
+                <input type="text" id="address" class="border border-gray-300 rounded p-2 w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="city" class="block text-gray-700">City</label>
+                <input type="text" id="city" class="border border-gray-300 rounded p-2 w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="state" class="block text-gray-700">State</label>
+                <input type="text" id="state" class="border border-gray-300 rounded p-2 w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="zip" class="block text-gray-700">Zip Code</label>
+                <input type="text" id="zip" class="border border-gray-300 rounded p-2 w-full" required>
+            </div>
+            <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Submit</button>
+        </form>
+    </main>
+
+</body>
+</html>
